@@ -1,55 +1,59 @@
-*
-{
-    padding: 0;
-    margin: 0;
-    font-family: 'Permanent Marker', cursive;
-    box-sizing: border-box;
+#box{
+    height: 200px;
+    width: 600px;
+    border: 2px solid black;
+    margin: auto;
+    position:center;
 }
 
-body{
-    display: grid;
-    place-items: center;
-    height: 100vh;
+.rex{
+    max-height: 110px;
+    max-width: 110px;
+    position: top;
+top:200px;
+animation: jump 0.3s linear;
 }
 
-#game-box{
-    height: 400px;
-    width: 1200px;
-    position: center;
-    overflow: none;
-    border: .05px solid black;
-    margin:auto;
+.jump {
+    animation: jump 0.3s linear;
 }
 
-.rex {
-    position: relative;
-    height: 40px;
-    width: 40px;
-    background-color:black;
-    top:100px;
-    bottom: 10px;
-    left: 10px;
-    animation: animateRex 0.5s linear infinite;
-}
-
-img{
-height: .05px;
-width: .05px;
-}
-
-@keyframes animateRex{
-    0%,100%
+@keyframes jump{
+    0%
     {
-        bottom: 20px;
+        top: 150px;
 }
-45%,55%
+25%
 {
-   bottom: 160px 
+   top: 125px;
+}
+50%{
+    top:70px;
+}
+80%{
+    top:125px;
+}
+100%{
+    top: 150px
 }
 }
 
 
 
-.habitats{
+.tree{
+    max-height: 70px;
+    max-width: 70px;
+    position: top;
+top: 120px;
+left: 910px;
+animation: move 1s infinite linear;
+}
 
+@keyframes move {
+    0%{
+        left:910px;
+    }
+    100%{
+        left:-20px;
+    }
 }
