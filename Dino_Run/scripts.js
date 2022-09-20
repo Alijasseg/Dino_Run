@@ -11,9 +11,9 @@ setTimeout(function(){
 }
 let isAlive = setInterval(function () {
     //get Y position of rex//
-let rexTop = parseInt(getComputedStyle(rex).getPropertyValue("top"));
+let rexTop = parseInt(window.getComputedStyle(rex).getPropertyValue("top"));
 //get tree  x position//
-let treeLeft = parseInt(getComputedStyle(tree).getPropertyValue("left"));
+let treeLeft = parseInt(window.getComputedStyle(tree).getPropertyValue("left"));
 
 
 //detect impact//
