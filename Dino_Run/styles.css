@@ -1,0 +1,15 @@
+.rex{
+    position: absolute;
+    max-height: 90px;
+    max-width: 90px;
+    bottom:0px;
+}
+
+
+.obstacle{
+    position: absolute;
+    max-height: 70px;
+    max-width: 70px;
+bottom: 0px;
+right:0px
+}

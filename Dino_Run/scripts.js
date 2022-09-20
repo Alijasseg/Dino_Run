@@ -1,30 +1,80 @@
-const rex = document.getElementById("rex");
-const tree = document.getElementById("tree");
+document.addEventListener('DOMContentLoaded', () => { 
+    const rex = document.querySelector('.rex');
+    const grid = document.querySelector('.grid')
+    const alert = document.getElementById('alert')
+    let isJumping = false
+    let gravity = 0.9
+let isExtinction = false
+ 
+// code for spacebar control//
+function spccontrol(e) {
+    if (e.keyCode === 32) {
+        if (isJumping === false)
+        isJumping = true
+       jump()
+    }
+}
+
+document.addEventListener('keyup', spccontrol)
+//code for jump//
+
+let position = 0
 function jump() {
-    if (rex.classList != "jump") {
-    rex.classList.add("jump")
+    let count = 0
+    let timerId = setInterval(function () {
 
-setTimeout(function(){
-    rex.classList.remove("jump");
-}, 300);
-}
-}
-let isAlive = setInterval(function () {
-    //get Y position of rex//
-let rexTop = parseInt(window.getComputedStyle(rex).getPropertyValue("top"));
-//get tree  x position//
-let treeLeft = parseInt(window.getComputedStyle(tree).getPropertyValue("left"));
-
-
-//detect impact//
-if (treeLeft <60 && treeLeft > 0 && rexTop >= 140){
-    //impact//
-    alert("Extinction!");
+//moves rex down//
+if (count === 15){
+    clearInterval(timerId)
+    console.log('down')
+    let downTimerId = setInterval(function () {
+    if (count === 0){
+        clearInterval(downTimerId)
+        isJumping = false
+    }
+    position -= 5
+    count --
+    position = position * gravity
+    rex.style.bottom = position + 'px'
+    },20)
 }
 
-}, 10);
 
-document.addEventListener("keydown", function(event){
-    jump();
-});
+//moves rex up//
+console.log('up')
+position +=30
+count ++
+position = position * gravity
+rex.style.bottom = position + 'px'
+    },20)
+}
+
+//obstacles for rex//
+function generateObstacles() {
+   let obstaclePosition = 1000
+    const obstacle = document.createElement('div')
+    if (!isExtinction) obstacle.classList.add('obstacle')
+    grid.appendChild(obstacle)
+    obstacle.style.left = obstaclePosition + 'px'
+//moves obstacle//
+let timerId = setInterval(function(){
+    if (obstaclePosition === 0)
+        clearInterval(timerId)
+        alert.innerHTML = 'Extinction'
+        isExtinction = true
+
+        //remove all children elements//
+        while (grid.firstChild) {
+            grid.removeChild(grid.lastChild)
+        }
+    
+    
+obstaclePosition -=10
+obstacle.style.left = obstaclePosition + 'px'
+},20)
+}
+
+generateObstacles()
+
+})
 
